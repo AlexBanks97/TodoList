@@ -14,7 +14,10 @@ switch(command) {
         break;
     case "check":
         markTodoAsChecked(msg);
-        break;    
+        break;
+    case "clear":
+        clear();
+        break;     
     default:
         console.log("Try the 'read' or 'add' command");    
 }
@@ -62,10 +65,13 @@ function read() {
             console.log("#" + i + " " + todos[i].message + " - Done?: " + todos[i].isDone);
         }
     });
+}
 
-    
-
-    
-
+function clear() {
+    let arr = [];
+    fs.writeFile(file, JSON.stringify(arr), function(error) {
+            if(error) throw error;
+            console.log("Cleared your todo list...");
+        });
 
 }
